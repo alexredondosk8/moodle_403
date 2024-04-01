@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,33 +16,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Moove.
+ * Definition of log events
  *
- * @package    theme_moove
- * @copyright  2022 Willian Mano - https://conecti.me
+ * @package    mod
+ * @subpackage choicegroup
+ * @copyright  2010 Petr Skoda (http://skodak.org)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// This line protects the file from being accessed by a URL directly.
 defined('MOODLE_INTERNAL') || die();
 
-// This is the component name of the plugin - it always starts with 'theme_'
-// for themes and should be the same as the name of the folder.
-$plugin->component = 'theme_moove';
-
-// This is the version of the plugin.
-$plugin->version = 2023100903;
-
-// This is the named version.
-$plugin->release = '4.3.3';
-
-// This is a stable release.
-$plugin->maturity = MATURITY_STABLE;
-
-// This is the version of Moodle this plugin requires.
-$plugin->requires = 2023100400;
-
-// This is a list of plugins, this plugin depends on (and their versions).
-$plugin->dependencies = [
-    'theme_boost' => 2023100900,
-];
+$logs = array(
+    array('module'=>'choicegroup', 'action'=>'view', 'mtable'=>'choicegroup', 'field'=>'name'),
+    array('module'=>'choicegroup', 'action'=>'update', 'mtable'=>'choicegroup', 'field'=>'name'),
+    array('module'=>'choicegroup', 'action'=>'add', 'mtable'=>'choicegroup', 'field'=>'name'),
+    array('module'=>'choicegroup', 'action'=>'report', 'mtable'=>'choicegroup', 'field'=>'name'),
+    array('module'=>'choicegroup', 'action'=>'choose', 'mtable'=>'choicegroup', 'field'=>'name'),
+    array('module'=>'choicegroup', 'action'=>'choose again', 'mtable'=>'choicegroup', 'field'=>'name'),
+);
