@@ -1,0 +1,314 @@
+#page-site-index {
+    .mooveuv-frontpage {
+        background-color: #f9f9f9;
+    }
+    // Slider.
+    a.carousel-control-prev,
+    a.carousel-control-next {
+        transition: all 0.25s ease-out;
+        color: white;
+        width: 6em;
+        padding-left: 1em;
+        padding-right: 1em;
+        opacity: 100%;
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+    a.carousel-control-prev:hover,
+    a.carousel-control-next:hover {
+        box-shadow: none;
+        border: none;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-image: none;
+        font-size: 1.2em;
+        font-weight: 400;
+        width: 30px;
+        height: 50px;
+    }
+    .carousel-control-next-icon:after {
+        content: '>';
+        font-size: 2em;
+        color: $heading-secondary-color;
+    }
+    .carousel-control-prev-icon:after {
+        content: '<';
+        font-size: 2em;
+        color: $heading-secondary-color;
+    }
+    .carousel-indicators > li {
+        border-radius: 100%;
+        width: 1em;
+        height: 1em;
+        background-color: #f9f9f9;
+    }
+    // Sections.
+    .frontpage-section {
+        background-color: #f9f9f9;
+        padding-left: 5em;
+        padding-right: 5em;
+        hr {
+            margin: 0px;
+        }
+    }
+    // Info section.
+    #row-sectioninfo-cards {
+        padding-top: 3em;
+        padding-bottom: 3em;
+        .col-sectioninfo-cards {
+            min-width: 33%;
+            display: flex;
+        }
+    }
+    .sectioninfo-card {
+        display: flex;
+        border: 1px;
+        box-shadow: none;
+        background-color: #f9f9f9;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+    .sectioninfo-card .card-header {
+        background-color: #e1e4e7;
+        padding: 1em;
+        border: 1px solid;
+        border-color: #e1e4e7;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+    }
+    .card-header > h2 {
+        text-align: center;
+        font-weight: 500;
+        color: $heading-secondary-color;
+        margin-bottom: 0px;
+    }
+    .sectioninfo-card .card-body {
+        padding-top: 3em;
+        padding-left: 3em;
+        padding-right: 3em;
+        border-top: 0px solid #E1E4E7;
+        border-left: 1px solid #E1E4E7;
+        border-bottom: 1px solid #E1E4E7;
+        border-right: 1px solid #E1E4E7;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        background-color: #ffffff;
+        color: #000000;
+        a {
+            color: #000000;
+        }
+        li {
+            list-style-type: "+ ";
+            list-style-position: outside;
+        }
+        li::marker {
+            font-weight: 600;
+        }
+    }
+    .div-business-days {
+        padding-left: 0.3em;
+        padding-right: 0em;
+    }
+    // Open courses section.
+    #frontpage-available-course-list > h2 {
+        display: none;
+    }
+    #open-courses-section > div {
+        padding-left : 0px;
+        padding-right: 0px;
+    }
+    #open-courses-section {
+        background-color: #f9f9f9;
+    }
+    // Institutional licensed software.
+    #institutional-licensed-software-section {
+        margin-bottom: 7em;
+    }
+    .licensed-software-image {
+        padding: 2em;
+    }
+    .navbar.fixed-top {
+        // Language.
+        #lang-menu-toggle {
+            display: none;
+        }
+        .langbutton {
+            display: none;
+        }
+        // Mobile.
+        button {
+            display: none;
+        }
+    }
+    // Responsive design.
+    // Boostrap breakpoints.
+    // xs < 576px
+    // sm >= 576px
+    // md >= 768px
+    // lg >= 992px
+    // xl >= 1200px
+    @include media-breakpoint-between(xs, sm) {
+        .navbar.fixed-top {
+            button {
+                display: none !important;
+            }
+        }
+        #information-section {
+            padding: 1em;
+            margin: 0.5em, 0.3em, 0.5em , 0.3em;
+            height: auto;
+        }
+        #row-sectioninfo-cards {
+            padding-top: 1em;
+            padding-bottom: 0em;
+        }
+        .sectioninfo-card {
+            margin-bottom: 2em;
+            padding-left: 0em;
+            padding-right: 0em;
+            .card-body {
+                padding: 2em 1em 1em 2em;
+            }
+        }
+        .div-business-days {
+            padding-left: 0.3em;
+            padding-right: 0em;
+        }
+        #ul-quick-help {
+            li {
+                font-size: 0.9em;
+                margin-top: 0.8em;
+            };
+        }
+        #ul-topics-of-interest {
+            li {
+                font-size: 0.9em;
+                margin-top: 0.8em;
+            }
+        }
+        #open-courses-section {
+            padding-left: 1em;
+            padding-right: 1em;
+            padding-top: 0em;
+        }
+        #institutional-licensed-software-section {
+            padding-left: 1em;
+            padding-right: 1em;
+            padding-top: 0em;
+            margin-bottom: 2em;
+        }
+    }
+
+    @include media-breakpoint-only(xs) {
+        p {
+            font-size: 0.9em;
+        }
+        .sectioninfo-card {
+            padding-left: 0em;
+            padding-right: 0em;
+            .card-body {
+                padding: 1em 0.3em 1em 0.3em;
+            }
+        }
+        #row-sectioninfo-cards {
+            margin: 1em;
+        }
+    }
+
+    @include media-breakpoint-only(sm) {
+        p {
+            font-size: 1em;
+        }
+    }
+
+    @include media-breakpoint-only(md) {
+        p {
+            font-size: 1.1em !important;
+        }
+        #information-section {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+        .sectioninfo-card {
+            padding-top: 1em;
+            padding-bottom: 0em;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+            .card-body {
+                padding-top: 1em;
+                padding-left: 1em !important;
+                padding-right: 1em !important;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(lg) {
+        p {
+            font-size: 1em;
+        }
+        #information-section {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+        .sectioninfo-card {
+            padding-top: 1em;
+            padding-bottom: 0em;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+            .card-body {
+                padding-top: 1em;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(xl) {
+        p {
+            font-size: 1em;
+        }
+        #information-section {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+        .sectioninfo-card {
+            padding-top: 1em;
+            padding-bottom: 0em;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+            .card-body {
+                padding-top: 2em;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+        }
+        .quick-help-card-body {
+            padding-left: 2em !important;
+            padding-right: 2em !important;
+        }
+        .topics-of-interest-card-body {
+            padding-left: 2em !important;
+            padding-right: 2em !important;
+        }
+        .div-business-days {
+            padding-left: 0.8em;
+        }
+        .div-business-hours {
+            padding-left: 0em;
+        }
+    }
+}
+
+#page-site-index.notloggedin {
+    #page-wrapper > nav > div.primary-navigation {
+        display: none;
+    }
+}
+
+.notloggedin {
+    .login > a {
+        color: white;
+    }
+}

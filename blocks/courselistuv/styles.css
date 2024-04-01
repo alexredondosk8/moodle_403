@@ -1,0 +1,23 @@
+.course-category-name {
+    list-style-type: none;
+}
+
+.course-groups {
+    cursor: pointer;
+    color: #cd1f32;
+}
+
+.courses-list {
+    list-style: none;
+}
+
+.courses-list a {
+    color: #2c4252 !important;
+}
+
+.course-groups[aria-expanded="false"] .fa-caret-down {
+    display: none;
+}
+.course-groups[aria-expanded="true"] .fa-caret-right {
+    display: none;
+}

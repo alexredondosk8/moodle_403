@@ -1,0 +1,220 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+}}
+{{!
+    @template   theme_mooveuv/mypublic
+    @author     2022 Juan Felipe Orozco Escobar <juanfe.ores@gmail.com>
+
+    Overriden mypublic template for mooveuv theme.
+
+    Context variables required for this template:
+    * sitename                      Moodle site name
+    * output                        The core renderer for the page
+    * bodyattributes                Attributes for the body tag as a string of html attributes
+    * sidepreblocks                 HTML for the blocks
+    * hasblocks                     True if there are blocks on this page
+    * courseindexopen               True if the nav drawer should be open on page load
+    * regionmainsettingsmenu        HTML for the region main settings menu
+    * hasregionmainsettingsmenu     There is a region main settings menu on this page
+    * blockcourselistuv             HTML that renders the content of the courselistuv block
+
+    Example context (json):
+    {
+        "sitename": "Moodle",
+        "output": {
+            "doctype": "<!DOCTYPE html>",
+            "page_title": "Test page",
+            "favicon": "favicon.ico",
+            "main_content": "<h1>Headings make html validators happier</h1>"
+         },
+        "bodyattributes":"",
+        "sidepreblocks": "<h2>Blocks html goes here</h2>",
+        "hasblocks":true,
+        "courseindexopen": true,
+        "navdraweropen": false,
+        "blockdraweropen": true,
+        "regionmainsettingsmenu": "",
+        "hasregionmainsettingsmenu": false,
+        "addblockbutton": ""
+        "blockcourselistuv": "
+            <div id="accordion-course-list" class="parent-group">
+                <p class="course-groups" data-toggle="collapse" data-target="#current-semester-courses" aria-expanded="false" aria-controls="current-semester-courses"> <span class="fa fa-caret-right"></span> <span class="fa fa-caret-down"></span> Current semester </p>
+                <div class="collapse mb-3" id="current-semester-courses" data-parent="#accordion-course-list">
+                    <ul class="courses-list">
+                        <li> <a href="https://path/to/moodle/course/view.php?id=100"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Current Semester Course Name 1 </a> </li>
+                        <li> <a href="https://path/to/moodle/course/view.php?id=200"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Current Semester Course Name 2 </a> </li>
+                        <li> <a href="https://path/to/moodle/course/view.php?id=300"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Current Semester Course Name 3 </a> </li>
+                        <li> <a href="https://path/to/moodle/course/view.php?id=400"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Current Semester Course Name 4 </a> </li>
+                    </ul>
+                </div>
+                <p class="course-groups" data-toggle="collapse" data-target="#semester_2021_I" aria-expanded="false" aria-controls="semester_2021_I"> <span class="fa fa-caret-right"></span> <span class="fa fa-caret-down"></span> Semester 2021 I </p>
+                <div class="collapse mb-3" id="semester_2021_I" data-parent="#accordion-course-list">
+                    <ul class="courses-list">
+                        <li> <a href="https://path/to/moodle/course/view.php?id=500"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Past Semester Course Name 1 </a> </li>
+                        <li> <a href="https://path/to/moodle/course/view.php?id=600"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Past Semester Course Name 2 </a> </li>
+                        <li> <a href="https://path/to/moodle/course/view.php?id=700"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Past Semester Course Name 3 </a> </li>
+                        <li> <a href="https://path/to/moodle/course/view.php?id=800"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Past Semester Course Name 4 </a> </li>
+                    </ul>
+                </div>
+                <p class="course-groups" data-toggle="collapse" data-target="#non-regular-courses" aria-expanded="false" aria-controls="non-regular-courses"> <span class="fa fa-caret-right"></span> <span class="fa fa-caret-down"></span> Non-regular courses </p>
+                <div class="collapse" id="non-regular-courses" data-parent="#accordion-course-list">
+                    <ul class="courses-list">
+                        <li> <a href="https://path/to/moodle/course/view.php?id=900"> <i class="fa fa-book fa-fw" role="img" title="Course" aria-label="Course"></i> Non-regular Course Name 1 </a> </li>
+                    </ul>
+                </div>
+            </div>
+        "
+    }
+}}
+
+{{> theme_moove/head }}
+
+    <body {{{ bodyattributes }}}>
+
+        {{> theme_moove/accessibilitybar }}
+
+        {{> core/local/toast/wrapper}}
+
+        <div id="page-wrapper" class="d-print-block">
+
+            {{{ output.standard_top_of_body_html }}}
+
+            {{> theme_moove/navbar }}
+
+            <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container">
+                <div id="topofscroll" class="main-inner">
+                    <div id="page-content" class="d-print-block">
+                        <div id="region-main-box">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card card-body card-profile">
+                                        <div class="userpicture">
+                                            <img src="{{{userpicture}}}" alt="{{{userfullname}}}">
+                                        </div>
+
+                                        <h3>{{{userfullname}}}</h3>
+
+                                        <div class="headerbuttons">
+                                            {{#headerbuttons}}
+                                                <a role="button" href="{{{url}}}" class="{{{class}}}"
+                                                    {{#linkattributes}}
+                                                    id="{{{id}}}"
+                                                    data-userid="{{{data-userid}}}"
+                                                    data-is-contact="{{{data-is-contact}}}"
+                                                    data-currentuserid="{{{data-currentuserid}}}"
+                                                    {{/linkattributes}}
+                                                >
+                                                    <i class="{{{icon}}}" title="{{{title}}}" aria-label="{{{title}}}"></i>
+                                                    {{{title}}}
+                                                </a>
+                                            {{/headerbuttons}}
+                                        </div>
+
+                                        {{#editprofileurl}}
+                                            <a href="{{{editprofileurl}}}" class="btn btn-sm btn-primary btn-block my-2"><i class="fa fa-edit"></i> {{#str}}editmyprofile{{/str}}</a>
+                                        {{/editprofileurl}}
+
+                                        <div class="userinfo my-2">
+                                            {{#userdescription}}
+                                                <hr>
+
+                                                <h6>{{#str}}aboutme, theme_moove{{/str}}</h6>
+
+                                                <div class="userdescription">{{{userdescription}}}</div>
+
+                                                <hr>
+                                            {{/userdescription}}
+                                            {{#usercanviewprofile}}
+                                                <h6>{{#str}}personalinformation, theme_moove{{/str}}</h6>
+                                                <ul>
+                                                    {{#useremail}}
+                                                        <li>
+                                                            <dl>
+                                                                <dt>{{#str}}email{{/str}}:</dt>
+                                                                <dd>
+                                                                    <a href="mailto:{{{useremail}}}">{{{useremail}}}</a>
+                                                                </dd>
+                                                            </dl>
+                                                        </li>
+                                                    {{/useremail}}
+                                                    {{#usercountry}}
+                                                        <li>
+                                                            <dl>
+                                                                <dt>{{#str}}country{{/str}}:</dt>
+                                                                <dd>{{{usercountry}}}</dd>
+                                                            </dl>
+                                                        </li>
+                                                    {{/usercountry}}
+                                                    {{#usercity}}
+                                                        <li>
+                                                            <dl>
+                                                                <dt>{{#str}}city{{/str}}:</dt>
+                                                                <dd>{{{usercity}}}</dd>
+                                                            </dl>
+                                                        </li>
+                                                    {{/usercity}}
+                                                </ul>
+                                            {{/usercanviewprofile}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="user-courses-tab" data-toggle="tab" href="#user-courses" role="tab" aria-controls="user-courses" aria-selected="true">{{#str}}courses{{/str}}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="user-details-tab" data-toggle="tab" href="#user-details" role="tab" aria-controls="user-details" aria-selected="false">{{#str}}user_profile_details, theme_mooveuv{{/str}}</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content mt-2" id="mypublic-tab">
+                                        <div class="tab-pane fade show active pt-1" id="user-courses" role="tabpanel" aria-labelledby="user-courses-tab">
+                                            <div role="main">
+                                                <section class="node_category card d-inline-block w-100 mb-3">
+                                                    <div class="card-body">
+                                                        {{{ blockcourselistuv }}}
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade pt-1" id="user-details" role="tabpanel" aria-labelledby="user-details-tab">
+                                            <section id="region-main" aria-label="{{#str}}content{{/str}}">
+                                                {{{ output.main_content }}}
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{> theme_moove/footer }}
+
+            </div>
+
+            {{{ output.standard_after_main_region_html }}}
+
+        </div>
+    </body>
+</html>
+
+{{#js}}
+    M.util.js_pending('theme_boost/loader');
+    require(['theme_boost/loader'], function(Loader) {
+        M.util.js_complete('theme_boost/loader');
+    });
+{{/js}}

@@ -1,0 +1,135 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+}}
+{{!
+    @template   theme_mooveuv/myoverview_past_semesters
+    @author     2022 Juan Felipe Orozco Escobar <juanfe.ores@gmail.com>
+
+    Overriden myoverview block template for mooveuv theme.
+
+    Context variables required for this template:
+    * moodlecourseurl           Moodle course view URL by ID
+    * regular_courses           Regular courses
+        * past_semesters        Regular courses from past semesters
+        * current_semester      Regular courses from current semester
+    * non_regular_courses       Non-regular courses from current and past semesters
+
+    Example context (json):
+    {
+        "moodlecourseurl": "https://path/to/moodle/course/view.php?id=",
+        "regular_courses": [
+            "past_semesters": [
+                [
+                    'tag': 'Semester 2021 I',
+                    'key': 'semester_2021_I',
+                    'courses': [
+                        {
+                            'courseid': '100',
+                            'coursefullname': 'Past Semester Course Fullname 1',
+                            'courseshortname': 'Past Semester Course Shortname 1',
+                            'coursecategory': '140',
+                            'coursestardate': '1612760400',
+                            'courseenddate': '1635750000',
+                            'coursetimecreated': '1612835211',
+                            'categorypath': '/6/30007/140'
+                        },
+                        {
+                            'courseid': '200',
+                            'coursefullname': 'Past Semester Course Fullname 2',
+                            'courseshortname': 'Past Semester Course Shortname 2',
+                            'coursecategory': '30750',
+                            'coursestardate': '1612760400',
+                            'courseenddate': '0',
+                            'coursetimecreated': '1612328953',
+                            'categorypath': '/6/30007/30750'
+                        }
+                    ]
+                ],
+                [
+                    'tag': 'Semester 2020 II',
+                    'key': 'semester_2020_II',
+                    'courses': [
+                        {
+                            'courseid': '300',
+                            'coursefullname': 'Past Semester Course Fullname 3',
+                            'courseshortname': 'Past Semester Course Shortname 3',
+                            'coursecategory': '30106',
+                            'coursestardate': '1596258000',
+                            'courseenddate': '1605942000',
+                            'coursetimecreated': '1603737873',
+                            'categorypath': '/6/30001/30106'
+                        }
+                    ]
+                ]
+            ],
+            "current_semester": [
+                {
+                    'courseid': '400',
+                    'coursefullname': 'Current Semester Course Fullname 1',
+                    'courseshortname': 'Current Semester Course Shortname 1',
+                    'coursecategory': '30106',
+                    'coursestardate': '1641877200',
+                    'courseenddate': '1648710000',
+                    'coursetimecreated': '1641571304',
+                    'categorypath': '/6/30001/30106'
+                    'courseimage': '.../svg'
+                }
+            ]
+        ],
+        "non_regular_courses": [
+            {
+                'courseid': '500',
+                'coursefullname': 'Non-regular Course Fullname 1',
+                'courseshortname': 'Non-regular Course Shortname 1',
+                'coursecategory': '20',
+                'coursestardate': '1533704400',
+                'courseenddate': '0',
+                'coursetimecreated': '1533760271',
+                'categorypath': '/7/69/20',
+                'courseimage': '.../svg'
+            }
+        ]
+    }
+}}
+
+<div id="accordion-course-list" class="parent-group">
+    {{#regular_courses}}
+        {{#past_semesters}}
+            <p class="course-groups" data-toggle="collapse" data-target="#{{key}}" aria-expanded="false" aria-controls="{{key}}">
+                <span class="fa fa-caret-right"></span>
+                <span class="fa fa-caret-down"></span>
+                {{tag}}
+            </p>
+            <div class="collapse mb-3" id="{{key}}" data-parent="#accordion-course-list">
+                <ul class="courses-list">
+                    {{#courses}}
+                        <li>
+                            <a href="{{moodlecourseurl}}{{courseid}}">
+                                <i class="fa fa-book fa-fw" role="img" title="{{#str}} course, block_courselistuv {{/str}}" aria-label="{{#str}} course, block_courselistuv {{/str}}"></i>
+                                {{coursefullname}}
+                            </a>
+                        </li>
+                    {{/courses}}
+                </ul>
+            </div>
+        {{/past_semesters}}
+        {{^past_semesters}}
+            <div class="no-courses-enrolled-past-semester">
+                <p>{{#str}} no_courses_past_semesters, theme_mooveuv {{/str}}</p>
+            </div>
+        {{/past_semesters}}
+    {{/regular_courses}}
+</div>

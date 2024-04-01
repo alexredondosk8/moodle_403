@@ -1,0 +1,185 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+}}
+{{!
+    @template   block_courselistuv/courselistuv_regular_user
+    @author     2022 Brayan Sanchez Leon <brayan.sanchez.leon@correounivalle.edu.co>
+    @author     2022 Iader E. Garcia Gomez <iadergg@gmail.com>
+    @author     2022 Juan Felipe Orozco Escobar <juanfe.ores@gmail.com>
+
+    This template renders the content for regular users in courselistuv block.
+
+    Context variables required for this template:
+    * regular_courses               Array with regular courses
+        * current_semester          Array with regular courses belonging to the current semester
+            * courseid              String with course ID
+            * coursefullname        String with course fullname
+        * past_semesters            Array with courses belonging to past semesters
+            * key                   String with the key value to identify a semester
+            * tag                   String with the human readable value of a semester
+            * courses               Array with courses belonging to a semester
+            * courseid              String with course ID
+            * coursefullname        String with course fullname
+    * non_regular_courses           Array with non-regular courses
+        * courseid                  String with course ID
+        * coursefullname            String with course fullname
+    * wwwroot                       String with Moodle site URL
+
+    Example context for regular user (json):
+    {
+        "regular_courses": [
+            "current_semester": [
+                {
+                    "courseid": 100,
+                    "coursefullname": "Current Semester Course Fullname 1",
+                    "courseshortname": "Current Semester Course Shortname 1"
+                },
+                {
+                    "courseid": 200,
+                    "coursefullname": "Current Semester Course Fullname 2",
+                    "courseshortname": "Current Semester Course Shortname 2"
+                }
+            ],
+            "past_semesters": [
+                {
+                    "key": "semester_2021_II",
+                    "tag": "Semester 2021 II",
+                    "courses": [
+                        {
+                            "courseid": 300,
+                            'coursefullname' => 'Past Semester Course Fullname 1',
+                            'courseshortname' => 'Past Semester Course Shortname 1',
+                        },
+                        {
+                            "courseid": 400,
+                            'coursefullname' => 'Past Semester Course Fullname 2',
+                            'courseshortname' => 'Past Semester Course Shortname 2',
+                        }
+                    ]
+                },
+                {
+                    "key": "semester_2020_II",
+                    "tag": "Semester 2020 II",
+                    "courses": [
+                        {
+                            "courseid": 500,
+                            'coursefullname' => 'Past Semester Course Fullname 3',
+                            'courseshortname' => 'Past Semester Course Shortname 3',
+                        },
+                        {
+                            "courseid": 600,
+                            'coursefullname' => 'Past Semester Course Fullname 4',
+                            'courseshortname' => 'Past Semester Course Shortname 4',
+                        }
+                    ]
+                }
+            ]
+        ],
+        "non_regular_courses": [
+            {
+                "courseid": 700,
+                'coursefullname' => 'Non-regular Course Fullname 1',
+                'courseshortname' => 'Non-regular Course Shortname 1',
+            },
+            {
+                "courseid": 800,
+                'coursefullname' => 'Non-regular Course Fullname 2',
+                'courseshortname' => 'Non-regular Course Shortname 2',
+            }
+        ],
+        "wwwroot": "https://path/to/moodle/"
+    }
+}}
+
+<div id="accordion-course-list" class="parent-group">
+
+    {{! Current semester }}
+    <p class="course-groups" data-toggle="collapse" data-target="#current-semester-courses" aria-expanded="false" aria-controls="current-semester-courses">
+        <span class="fa fa-caret-right"></span>
+        <span class="fa fa-caret-down"></span>
+        {{#str}} current_semester, block_courselistuv {{/str}}
+    </p>
+    <div class="collapse mb-3" id="current-semester-courses" data-parent="#accordion-course-list">
+        {{#regular_courses}}
+            <ul class="courses-list">
+                {{#current_semester}}
+                    <li>
+                        <a href="{{wwwroot}}/course/view.php?id={{courseid}}">
+                            <i class="fa fa-book fa-fw" role="img" title="{{#str}} course, block_courselistuv {{/str}}" aria-label="{{#str}} course, block_courselistuv {{/str}}"></i>
+                            {{coursefullname}}
+                        </a>
+                    </li>
+                {{/current_semester}}
+                {{^current_semester}}
+                    {{#str}} no_courses, block_courselistuv {{/str}}
+                {{/current_semester}}
+            </ul>
+        {{/regular_courses}}
+        {{^regular_courses}}
+            <ul class="courses-list">
+                {{#str}} no_courses, block_courselistuv {{/str}}
+            </ul>
+        {{/regular_courses}}
+    </div>
+
+    {{! Past semesters }}
+    {{#regular_courses}}
+        {{#past_semesters}}
+            <p class="course-groups" data-toggle="collapse" data-target="#{{key}}" aria-expanded="false" aria-controls="{{key}}">
+                <span class="fa fa-caret-right"></span>
+                <span class="fa fa-caret-down"></span>
+                {{tag}}
+            </p>
+            <div class="collapse mb-3" id="{{key}}" data-parent="#accordion-course-list">
+                <ul class="courses-list">
+                    {{#courses}}
+                        <li>
+                            <a href="{{wwwroot}}/course/view.php?id={{courseid}}">
+                                <i class="fa fa-book fa-fw" role="img" title="{{#str}} course, block_courselistuv {{/str}}" aria-label="{{#str}} course, block_courselistuv {{/str}}"></i>
+                                {{coursefullname}}
+                            </a>
+                        </li>
+                    {{/courses}}
+                    {{^courses}}
+                        {{#str}} no_courses, block_courselistuv {{/str}}
+                    {{/courses}}
+                </ul>
+            </div>
+        {{/past_semesters}}
+    {{/regular_courses}}
+
+    {{! Non-regular courses }}
+    <p class="course-groups" data-toggle="collapse" data-target="#non-regular-courses" aria-expanded="false" aria-controls="non-regular-courses">
+        <span class="fa fa-caret-right"></span>
+        <span class="fa fa-caret-down"></span>
+        {{#str}} non_regular_courses, block_courselistuv {{/str}}
+    </p>
+    <div class="collapse" id="non-regular-courses" data-parent="#accordion-course-list">
+        <ul class="courses-list">
+            {{#non_regular_courses}}
+                <li>
+                    <a href="{{wwwroot}}/course/view.php?id={{courseid}}">
+                        <i class="fa fa-book fa-fw" role="img" title="{{#str}} course, block_courselistuv {{/str}}" aria-label="{{#str}} course, block_courselistuv {{/str}}"></i>
+                        {{coursefullname}}
+                    </a>
+                </li>
+            {{/non_regular_courses}}
+            {{^non_regular_courses}}
+                {{#str}} no_courses, block_courselistuv {{/str}}
+            {{/non_regular_courses}}
+        </ul>
+    </div>
+</div>
