@@ -22,50 +22,20 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Insert a link to index.php on the site front page navigation menu.
  *
  * @param navigation_node $frontpage Node representing the front page in the navigation tree.
  */
 function local_greetings_extend_navigation_frontpage(navigation_node $frontpage) {
-    if (get_config('local_greetings', 'showinnavigation')) {
-        if (isloggedin() && !isguestuser()) {
-            $frontpage->add(
-                get_string('pluginname', 'local_greetings'),
-                new moodle_url('/local/greetings/index.php'),
-                navigation_node::TYPE_CUSTOM,
-                null,
-                null,
-                new pix_icon('t/message', '')
-            );
-        }
-    }
-}
-
-/**
- * Add link to index.php into navigation drawer.
- *
- * @param global_navigation $root Node representing the global navigation tree.
- */
-function local_greetings_extend_navigation(global_navigation $root) {
     if (isloggedin() && !isguestuser()) {
-        $node = navigation_node::create(
+        $frontpage->add(
             get_string('pluginname', 'local_greetings'),
             new moodle_url('/local/greetings/index.php'),
             navigation_node::TYPE_CUSTOM,
-            null,
-            null,
-            new pix_icon('t/message', '')
         );
-
-        $node->showinflatnavigation = get_config('local_greetings', 'showinnavigation');
-
-        $root->add_node($node);
     }
 }
-
 
 /**
  * Get a localised greeting message for a user
