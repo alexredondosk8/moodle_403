@@ -31,9 +31,6 @@ class message_form extends \moodleform {
      */
     public function definition() {
         $mform = $this->_form; // Don't forget the underscore!
-
-        / Agregar un elemento <label> para el campo de texto.
-        $mform->addElement('static', 'label_message', get_string('label_message', 'local_greetings'), '<label for="id_message">' . get_string('yourmessage', 'local_greetings') . '</label>');
         
         $mform->addElement('textarea', 'message', get_string('yourmessage', 'local_greetings')); // Add elements to your form.
         $mform->setType('message', PARAM_TEXT); // Set type of element.
